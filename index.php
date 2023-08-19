@@ -28,12 +28,23 @@
                         <div class="nameArea">
                             <span>名前：</span>
                             <p class="username">Shincode</p>
-                            <time>:2023/08/19 13:02</time>
+                            <time>：2023/08/19 13:02</time>
                         </div>
-                        <p>手書きのハードコーディングです</p>
+                        <p class="comment">手書きのハードコーディングです</p>
                     </div>
                 </article>
             </section>
+            <form class="formWrapper">
+                <div>
+                    <!-- submitで送信ボタン -->
+                    <input type="submit" value="投稿する">
+                    <label>名前：</label>
+                    <input type="text">
+                </div>
+                <div>
+                    <textarea class="commentTextArea"></textarea>
+                </div>
+            </form>
         </div>
     </div>
 </body>

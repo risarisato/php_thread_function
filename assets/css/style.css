@@ -40,3 +40,39 @@ body {
     margin-left: 15px;
     font-size: 27px;
 }
+
+/* コメントの中身左に寄りすぎているので隙間を開ける */
+section {
+    padding: 0 30px;    
+}
+
+/* 名前と日付を横並びにする */
+section .nameArea {
+    display: flex;
+    align-items: center;
+    margin-bottom: -20px;
+}
+
+section .username {
+    color: #2afc00;
+    font-weight: 900;
+}
+
+section .comment {
+    margin-top: 15;
+    margin-left: 50px;
+}
+
+/* formWrapperの書き込みのcss */
+.formWrapper {
+    padding: 20px;
+    margin-left: 60px;
+}
+
+/* コメント中身をCSS */
+.commentTextArea {
+    margin-top: 20px;
+    width: 500px;
+    height: 100px;
+    resize: none; /* テキストの大きさを変更せない */
+}
