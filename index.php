@@ -1,3 +1,24 @@
+<?php
+# 次回はphpとmysql＝webサーバー：Apacheとmysqlを接続させて、文字列をDBに格納させる
+# isset関数で「submitButton」が入っているか判定させるてワーニングを回避
+if (isset($_POST["submitButton"])) {
+    $username = $_POST["username"];
+    var_dump($username);
+    $body = $_POST["body"];
+    var_dump($body);
+}
+
+
+#$title = "shincode";
+#var_dump($title); #phpのデバッグ
+#string(8)=型＞文字 "shincode"＝値
+# スーパーグローバル変数はPHPの組み込み変数
+# "username"(key)=>"shincode"(値)の連想配列
+$username = $_POST["username"];
+var_dump($username); #ここでPOSTメソッドが発動している
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,15 +55,17 @@
                     </div>
                 </article>
             </section>
-            <form class="formWrapper">
+            <!-- メソッドをpostで送信する -->
+            <form class="formWrapper" method="post">
                 <div>
-                    <!-- submitで送信ボタン -->
-                    <input type="submit" value="投稿する">
+                    <!-- 「input」のsubmitで送信ボタン:name="submitButton"をつけてワーニングを回避する -->
+                    <input type="submit" value="投稿する" name="submitButton">
                     <label>名前：</label>
-                    <input type="text">
+                    <!-- この「text」は、usernameを打ち込むためのinputフォームになる -->
+                    <input type="text" name="username">
                 </div>
                 <div>
-                    <textarea class="commentTextArea"></textarea>
+                    <textarea class="commentTextArea" name="body"></textarea>
                 </div>
             </form>
         </div>
