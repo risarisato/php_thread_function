@@ -1,0 +1,10 @@
+/* 「CTRL」+「/」でcssのコメントアウトできる */
+body {
+    background-color: blueviolet;
+}
+
+/* タイトルを中央にする */
+.title {
+    text-align: center;
+    font-size: 40;   
+}
