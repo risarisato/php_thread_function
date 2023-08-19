@@ -1,0 +1,2 @@
+# php_thread_function
+PHP掲示板スレッド機能を作成する
