@@ -10,7 +10,18 @@
 - `git push -u origin main`:なぜかmasterになったため
 
 
-##### 知識 <hr>　
-- 「hr」 は水平線
-- `「CTRL」+「/」`でhtmlのコメントアウトできる
-- /* 「CTRL」+「/」でcssのコメントアウトできる */
+##### ブランチ削除について
+- gitの削除知識(どちらも同じ)<br>
+`git branch --delete ブランチ名`<br>
+`git branch -d ブランチ名`<br>
+マージ済みのブランチのみ削除ができる<br>
+マージされていないブランチを削除しようと下記のエラーになる。<br>
+`error: Cannot delete the branch ブランチ名 which you are currently on`
+
+#### ブランチマージしてないときは強制削除する
+`git branch -D ブランチ名`
+
+<hr>
+- 「hr」 は水平線<br>
+- `「CTRL」+「/」`でhtmlのコメントアウトできる<br>
+- /* 「CTRL」+「/」でcssのコメントアウトできる */<br>
