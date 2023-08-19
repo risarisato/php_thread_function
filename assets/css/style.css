@@ -1,10 +1,42 @@
 /* 「CTRL」+「/」でcssのコメントアウトできる */
 body {
-    background-color: blueviolet;
+    background-color: rgb(241, 252, 178);
 }
 
 /* タイトルを中央にする */
 .title {
     text-align: center;
     font-size: 40;   
+}
+
+/* threadWrapperスレッドの箇所変更 */
+.threadWrapper {
+    background-color: beige;
+    padding: 30px; /* 内側から外へ */
+    max-width: 900px; /* 幅900*/
+    margin: 0 auto; /* 幅900のautoの中央へ*/
+    border: 8px solid rgb(38, 0, 255); /* threadWrapperに線 */
+    margin-bottom: 25px; /* 下の余白 */
+}
+
+/* childWrapperスレッドの内側 */
+.childWrapper {
+    border: 1px solid black;
+    padding: 20px;
+}
+
+/* threadTitleでタイトルをそろえる */
+.threadTitle {
+    display: flex; /* 横並びにする→そろわないため */
+    align-items: center; /* 横に対して中央にそろえる */
+    font-weight: 700; /* 文字の濃さ */
+    margin-left: 20px; /* タイトルをすこし左に移動 */
+    height: 60px;
+}
+
+/* メインタイトルの色<h1>に適用させたい */
+.threadTitle h1 {
+    color: firebrick;
+    margin-left: 15px;
+    font-size: 27px;
 }
