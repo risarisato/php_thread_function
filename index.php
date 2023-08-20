@@ -1,5 +1,4 @@
 <?php
-# 次回はphpとmysql＝webサーバー：Apacheとmysqlを接続させて、文字列をDBに格納させる
 # isset関数で「submitButton」が入っているか判定させるてワーニングを回避
 if (isset($_POST["submitButton"])) {
     $username = $_POST["username"];
