@@ -1,6 +1,6 @@
 <?php
 
-// DBを接続を見に行くの下記URLまで見にいないといけないのは面倒
+// DBを接続の「状態」を見に下記URLまで見にいないといけないのは面倒
 // http://localhost:8080/php_thread_function/app/database/connect.php
 // include_onceでpathを読み込んであげる。
 include_once("./app/database/connect.php");
@@ -12,6 +12,19 @@ if (isset($_POST["submitButton"])) {
     $body = $_POST["body"];
     var_dump($body);
 }
+
+$commnet_array = array();
+
+// sqlクエリを取得する
+$sql = "SELECT * FROM comment";
+$statement = $pdo->prepare($sql);
+$statement->execute();
+$commnet_array = $statement;
+
+//sqlクエリの中身を「var_dump」で確認する
+//var_dump($commnet_array);
+//var_dump($commnet_array->fetchObject());
+var_dump($commnet_array->fetchAll());
 
 
 #$title = "shincode";
