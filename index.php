@@ -24,7 +24,8 @@ $commnet_array = $statement;
 //sqlクエリの中身を「var_dump」で確認する
 //var_dump($commnet_array);
 //var_dump($commnet_array->fetchObject());
-var_dump($commnet_array->fetchAll());
+//var_dumpするとプログラムが止まっていまうのはdd();と同じ
+//var_dump($commnet_array->fetchAll());
 
 
 #$title = "shincode";
@@ -62,16 +63,21 @@ var_dump($username); #ここでPOSTメソッドが発動している
                 <h1>PHP掲示板スレッド機能-掲示板を作ってみた</h1>
             </div>
             <section>
-                <article>
-                    <div class="wrapper">
-                        <div class="nameArea">
-                            <span>名前：</span>
-                            <p class="username">Shincode</p>
-                            <time>：2023/08/19 13:02</time>
+                <?php foreach ($commnet_array as $comment) : ?>
+                    <article>
+                        <div class="wrapper">
+                            <div class="nameArea">
+                                <span>名前：</span>
+                                <!-- <p class="username">Shincodeハードコーディング</p> -->
+                                <p class="username"><?php echo $comment["username"];?></p>
+                                <!-- <time>：2023/08/19 13:02ハードコーディング</time> -->
+                                <time>：<?php echo $comment["post_date"];?></time>
+                            </div>
+                            <!-- <p class="comment">手書きのハードコーディングです</p> -->
+                            <p class="comment"><?php echo $comment["body"]; ?></p>
                         </div>
-                        <p class="comment">手書きのハードコーディングです</p>
-                    </div>
-                </article>
+                    </article>
+                <?php endforeach ?>
             </section>
             <!-- メソッドをpostで送信する -->
             <form class="formWrapper" method="post">
