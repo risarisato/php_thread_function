@@ -5,12 +5,29 @@
 // include_onceでpathを読み込んであげる。
 include_once("./app/database/connect.php");
 
-# isset関数で「submitButton」が入っているか判定させるてワーニングを回避
+// isset関数で「submitButton」が入っているか判定させるてワーニングを回避
 if (isset($_POST["submitButton"])) {
-    $username = $_POST["username"];
-    var_dump($username);
-    $body = $_POST["body"];
-    var_dump($body);
+    //$username = $_POST["username"];
+    //var_dump($username);
+    //$body = $_POST["body"];
+    //var_dump($body);
+
+    // 時間と日付を定義する
+    $post_date = date("Y-m-d H:i:s");
+
+    // sqlにINSERTする
+    $sql = "INSERT INTO `comment` (`username`, `body`, `post_date`) VALUES (:username, :body, :post_date);";
+    $statement = $pdo->prepare($sql);
+
+    // 値をセット(:username, :body, :post_date)する
+    //$statement->bindParam(":username", $_POST["username"], PDO::PAPAM_STR);スペルミス
+    $statement->bindParam(":username", $_POST["username"], PDO::PARAM_STR);
+    //$statement->bindParam(":body", $_POST["body"], PDO::PAPAM_STR);スペルミス
+    $statement->bindParam(":body", $_POST["body"], PDO::PARAM_STR);
+    //$statement->bindParam(":post_date", $post_date, PDO::PAPAM_STR);スペルミス
+    $statement->bindParam(":post_date", $post_date, PDO::PARAM_STR);
+
+    $statement->execute();
 }
 
 $commnet_array = array();

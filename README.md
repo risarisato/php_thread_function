@@ -1,3 +1,5 @@
+## 次回は、28. 実際にコメント投稿できるか確認してみよう
+
 ## PHP掲示板スレッド機能を作成する
 - http://localhost:8080/2chan-bbs/
 - http://localhost:8080/phpmyadmin/
