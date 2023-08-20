@@ -1,9 +1,9 @@
 ## PHP掲示板スレッド機能を作成する
-
+- http://localhost:8080/2chan-bbs/
+- http://localhost:8080/phpmyadmin/
 
 ## 環境構築
 - XAMMP環境で作成
-- http://localhost:8080/2chan-bbs/
 - /c/xampp/htdocs/2chan-bbs (main)
 - xampp/htdocs/2chan-bbsで`「git init」`のフォルダをgit管理
 - git remote add origin git@XXXX でリモート追加
