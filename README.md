@@ -1,4 +1,4 @@
-## 次回は、28. 実際にコメント投稿できるか確認してみよう
+#### 33. コードのリファクタリングをはじめよう
 
 ## PHP掲示板スレッド機能を作成する
 - http://localhost:8080/2chan-bbs/
@@ -28,3 +28,22 @@
 - 「hr」 は水平線<br>
 - `「CTRL」+「/」`でhtmlのコメントアウトできる<br>
 - /* 「CTRL」+「/」でcssのコメントアウトできる */<br>
+- vscodeで「crtl + D」で同じ文字列を選択できる
+
+## MySQL起動エラー
+Error: MySQL shutdown unexpectedly.<br>
+This may be due to a blocked port, missing dependencies,<br>
+improper privileges, a crash, or a shutdown by another method.<br>
+Press the Logs button to view error logs and check<br>
+the Windows Event Viewer for more clues<br>
+If you need more help, copy and post this<br>
+entire log window on the forums<br>
+
+#### XAMPPの「shell」から下記のコマンドを実行
+aria_chk -r
+del C:\xampp\mysql\data\aria_log.*
+
+## xss攻撃
+- <script>window.location.href ="https://google.com":</script> 実行される
+- DBの中身は…
+- &lt;script&gt;window.location.href =&quot;https://google.com&quot;:&lt;/script&g エスケープ処理される

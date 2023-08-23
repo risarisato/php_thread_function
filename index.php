@@ -5,6 +5,10 @@
 // include_onceでpathを読み込んであげる。
 include_once("./app/database/connect.php");
 
+// $error_message が無いときに書き込める
+$error_message = array();
+
+
 // isset関数で「submitButton」が入っているか判定させるてワーニングを回避
 if (isset($_POST["submitButton"])) {
     //$username = $_POST["username"];
@@ -12,27 +16,48 @@ if (isset($_POST["submitButton"])) {
     //$body = $_POST["body"];
     //var_dump($body);
 
-    // 時間と日付を定義する
-    $post_date = date("Y-m-d H:i:s");
+    // 名前のバリデーションチェック
+    if (empty($_POST["username"])) {
+        $error_message["username"] = "名前が未記入です。";
+    } else {
+        // エスケープ処理<script>_</script>を実行させない
+        $escapse["username"] = htmlspecialchars($_POST["username"], ENT_QUOTES, "UTF-8");
+    }
 
-    // sqlにINSERTする
-    $sql = "INSERT INTO `comment` (`username`, `body`, `post_date`) VALUES (:username, :body, :post_date);";
-    $statement = $pdo->prepare($sql);
+    // コメントのバリデーションチェック
+    if (empty($_POST["body"])) {
+        $error_message["body"] = "コメントがありません。";
+    } else {
+        // エスケープ処理<script>_</script>を実行させない
+        $escapse["body"] = htmlspecialchars($_POST["body"], ENT_QUOTES, "UTF-8");
+    }
 
-    // 値をセット(:username, :body, :post_date)する
-    //$statement->bindParam(":username", $_POST["username"], PDO::PAPAM_STR);スペルミス
-    $statement->bindParam(":username", $_POST["username"], PDO::PARAM_STR);
-    //$statement->bindParam(":body", $_POST["body"], PDO::PAPAM_STR);スペルミス
-    $statement->bindParam(":body", $_POST["body"], PDO::PARAM_STR);
-    //$statement->bindParam(":post_date", $post_date, PDO::PAPAM_STR);スペルミス
-    $statement->bindParam(":post_date", $post_date, PDO::PARAM_STR);
+    if (empty($error_message)) {
 
-    $statement->execute();
+        // 時間と日付を定義する
+        $post_date = date("Y-m-d H:i:s");
+
+        // sqlにINSERTする
+        $sql = "INSERT INTO `comment` (`username`, `body`, `post_date`) VALUES (:username, :body, :post_date);";
+        $statement = $pdo->prepare($sql);
+
+        // 値をセット(:username, :body, :post_date)する→エスケープ処理した変数を使用する
+        $statement->bindParam(":username", $escapse["username"], PDO::PARAM_STR);
+        $statement->bindParam(":body", $escapse["body"], PDO::PARAM_STR);
+        //$statement->bindParam(":username", $_POST["username"], PDO::PAPAM_STR);スペルミス
+        //$statement->bindParam(":username", $_POST["username"], PDO::PARAM_STR);
+        //$statement->bindParam(":body", $_POST["body"], PDO::PAPAM_STR);スペルミス
+        //$statement->bindParam(":body", $_POST["body"], PDO::PARAM_STR);
+        //$statement->bindParam(":post_date", $post_date, PDO::PAPAM_STR);スペルミス
+        $statement->bindParam(":post_date", $post_date, PDO::PARAM_STR);
+
+        $statement->execute();
+    }
 }
 
 $commnet_array = array();
 
-// sqlクエリを取得する
+// sqlクエリを取得する=コメントデータをテーブルから取得する
 $sql = "SELECT * FROM comment";
 $statement = $pdo->prepare($sql);
 $statement->execute();
@@ -71,6 +96,14 @@ var_dump($username); #ここでPOSTメソッドが発動している
         <!-- http://localhost:8080/2chan-bbs/ -->
         <hr>
     </header>
+    <!-- バリデーションチェックのエラーを表示させる  -->
+    <?php if (isset($error_message)) : ?>
+        <ul class = "errorMessage">
+            <?php foreach ($error_message as $error) : ?>
+                <li><?php echo $error ?></li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
 
     <!-- スレッドエリア -->
     <div class="threadWrapper">
