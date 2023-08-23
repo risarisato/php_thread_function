@@ -1,4 +1,4 @@
-## 次回は、28. 実際にコメント投稿できるか確認してみよう
+#### 33. コードのリファクタリングをはじめよう
 
 ## PHP掲示板スレッド機能を作成する
 - http://localhost:8080/2chan-bbs/
@@ -43,3 +43,7 @@ entire log window on the forums<br>
 aria_chk -r
 del C:\xampp\mysql\data\aria_log.*
 
+## xss攻撃
+- <script>window.location.href ="https://google.com":</script> 実行される
+- DBの中身は…
+- &lt;script&gt;window.location.href =&quot;https://google.com&quot;:&lt;/script&g エスケープ処理される

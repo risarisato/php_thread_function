@@ -16,12 +16,20 @@ if (isset($_POST["submitButton"])) {
     //$body = $_POST["body"];
     //var_dump($body);
 
-    // 名前とコメントのバリデーションチェック
+    // 名前のバリデーションチェック
     if (empty($_POST["username"])) {
         $error_message["username"] = "名前が未記入です。";
+    } else {
+        // エスケープ処理<script>_</script>を実行させない
+        $escapse["username"] = htmlspecialchars($_POST["username"], ENT_QUOTES, "UTF-8");
     }
+
+    // コメントのバリデーションチェック
     if (empty($_POST["body"])) {
         $error_message["body"] = "コメントがありません。";
+    } else {
+        // エスケープ処理<script>_</script>を実行させない
+        $escapse["body"] = htmlspecialchars($_POST["body"], ENT_QUOTES, "UTF-8");
     }
 
     if (empty($error_message)) {
@@ -33,11 +41,13 @@ if (isset($_POST["submitButton"])) {
         $sql = "INSERT INTO `comment` (`username`, `body`, `post_date`) VALUES (:username, :body, :post_date);";
         $statement = $pdo->prepare($sql);
 
-        // 値をセット(:username, :body, :post_date)する
+        // 値をセット(:username, :body, :post_date)する→エスケープ処理した変数を使用する
+        $statement->bindParam(":username", $escapse["username"], PDO::PARAM_STR);
+        $statement->bindParam(":body", $escapse["body"], PDO::PARAM_STR);
         //$statement->bindParam(":username", $_POST["username"], PDO::PAPAM_STR);スペルミス
-        $statement->bindParam(":username", $_POST["username"], PDO::PARAM_STR);
+        //$statement->bindParam(":username", $_POST["username"], PDO::PARAM_STR);
         //$statement->bindParam(":body", $_POST["body"], PDO::PAPAM_STR);スペルミス
-        $statement->bindParam(":body", $_POST["body"], PDO::PARAM_STR);
+        //$statement->bindParam(":body", $_POST["body"], PDO::PARAM_STR);
         //$statement->bindParam(":post_date", $post_date, PDO::PAPAM_STR);スペルミス
         $statement->bindParam(":post_date", $post_date, PDO::PARAM_STR);
 
@@ -94,7 +104,7 @@ var_dump($username); #ここでPOSTメソッドが発動している
             <?php endforeach; ?>
         </ul>
     <?php endif; ?>
-    
+
     <!-- スレッドエリア -->
     <div class="threadWrapper">
         <div class="childWrapper">
