@@ -28,3 +28,18 @@
 - 「hr」 は水平線<br>
 - `「CTRL」+「/」`でhtmlのコメントアウトできる<br>
 - /* 「CTRL」+「/」でcssのコメントアウトできる */<br>
+- vscodeで「crtl + D」で同じ文字列を選択できる
+
+## MySQL起動エラー
+Error: MySQL shutdown unexpectedly.<br>
+This may be due to a blocked port, missing dependencies,<br>
+improper privileges, a crash, or a shutdown by another method.<br>
+Press the Logs button to view error logs and check<br>
+the Windows Event Viewer for more clues<br>
+If you need more help, copy and post this<br>
+entire log window on the forums<br>
+
+#### XAMPPの「shell」から下記のコマンドを実行
+aria_chk -r
+del C:\xampp\mysql\data\aria_log.*
+

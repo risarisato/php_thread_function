@@ -76,3 +76,10 @@ section .comment {
     height: 100px;
     resize: none; /* テキストの大きさを変更せない */
 }
+
+.errorMessage {
+    color: red;
+    font-size: 26;
+    font-weight: 700;
+    margin-left: 240px;
+}
