@@ -15,4 +15,5 @@ try {
 
 // DBを接続を見に行くの下記URLまで見にいないといけないのは面倒
 // http://localhost:8080/php_thread_function/app/database/connect.php
+
 ?>

@@ -28,7 +28,7 @@
 - 「hr」 は水平線<br>
 - `「CTRL」+「/」`でhtmlのコメントアウトできる<br>
 - /* 「CTRL」+「/」でcssのコメントアウトできる */<br>
-- vscodeで「crtl + D」で同じ文字列を選択できる
+
 
 ## MySQL起動エラー
 Error: MySQL shutdown unexpectedly.<br>
@@ -46,4 +46,10 @@ del C:\xampp\mysql\data\aria_log.*
 ## xss攻撃
 - <script>window.location.href ="https://google.com":</script> 実行される
 - DBの中身は…
-- &lt;script&gt;window.location.href =&quot;https://google.com&quot;:&lt;/script&g エスケープ処理される
+- &lt;script&gt;window.location.href =&quot;https://google.com&quot;:&lt;/script&g<br>
+エスケープ処理される
+
+
+## VSCodeでショートカット
+- インデントをそろえる 「Shift + Alt + F」(phpのフォーマッターが必要そう)
+- vscodeで「crtl + D」で同じ文字列を選択できる
