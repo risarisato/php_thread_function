@@ -40,7 +40,7 @@ If you need more help, copy and post this<br>
 entire log window on the forums<br>
 
 #### XAMPPの「shell」から下記のコマンドを実行
-aria_chk -r
+aria_chk -r<br>
 del C:\xampp\mysql\data\aria_log.*
 
 ## xss攻撃
