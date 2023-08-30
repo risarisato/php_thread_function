@@ -6,7 +6,6 @@
 include_once("./app/database/connect.php");
 
 
-
 ?>
 
 <!DOCTYPE html>
@@ -24,8 +23,11 @@ include_once("./app/database/connect.php");
     <!-- validationファイルをリファクタリング -->
     <?php include("app/parts/validation.php"); ?>
 
-    <!-- threadWrapperァイルをリファクタリング -->
+    <!-- threadWrapperファイルをリファクタリング -->
     <?php include("app/parts/thread.php"); ?>
+
+    <!-- 親スレッド新規書き込みをリンクさせる -->
+    <?php include("app/parts/newThreadButton.php"); ?>
 
 </body>
 </html>

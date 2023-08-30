@@ -83,3 +83,26 @@ section .comment {
     font-weight: 700;
     margin-left: 240px;
 }
+
+/* 親スレッド新規書き込みのCSS */
+.newThreadWrapper {
+    background-color: rgb(140, 255, 0);
+    padding: 10px;
+    max-width: 1300px;
+    margin: 0 auto; /* 中央寄せになる */
+    border: 5px solid rgb(0, 255, 166);
+    margin-bottom: 20px;
+}
+
+.newChildThreadWrapper {
+    text-align: center;
+    padding: 20px;
+    border: 5px solid rgb(179, 218, 39);
+}
+
+/* 親スレッドのボタン装飾 */
+.newChildThreadWrapper button {
+    width: 200px;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
