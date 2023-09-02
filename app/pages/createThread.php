@@ -3,6 +3,8 @@
 // こちらは親ページになるのでpathが変わる！
 include_once("../database/connect.php");
 
+// 親スレッドの新規立ち上げのpath
+include_once("../../app/functions/thread_add.php");
 
 ?>
 
@@ -32,7 +34,7 @@ include_once("../database/connect.php");
             <label>新規スレッド名</label>
             <input type="text" name="title">
             <label>親の投稿者名</label>
-            <input type="test" name="username">
+            <input type="text" name="username">
         </div>
         <div>
             <textarea name="body" class="commentTextArea"></textarea>

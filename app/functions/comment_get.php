@@ -20,5 +20,5 @@ $commnet_array = $statement;
 #string(8)=型＞文字 "shincode"＝値
 # スーパーグローバル変数はPHPの組み込み変数
 # "username"(key)=>"shincode"(値)の連想配列
-$username = $_POST["username"];
-var_dump($username); #ここでPOSTメソッドが発動している
+#$username = $_POST["username"];
+#var_dump($username); #ここでPOSTメソッドが発動している
