@@ -8,18 +8,12 @@ include_once("./app/database/connect.php");
 // コメント投稿するための関数
 include("app/functions/comment_add.php");
 
-// データを取得するための関数
-include("app/functions/comment_get.php");
-
-
 // 親スレッドを取得する
 include("app/functions/thread_get.php");
 
 
 //var_dump($thread_array); 親スレッドが取得できているか確認
 
-// DBの接続を閉じる(これがないからXAMPPのphpmyadminがバグる？)
-//$pdo = null;
 ?>
 
 <!-- スレッドエリア -->
