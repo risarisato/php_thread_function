@@ -61,6 +61,7 @@ del C:\xampp\mysql\data\aria_log.*
 - 新しいテーブルにカラムを設定する
 - リレーション(外部キー)をどこのカラムに紐づけるか決める
 - ここでは親テーブルを作成した。値が「null」のためテーブル上で直接INSERTSする
+![image](https://github.com/risarisato/php_thread_function/assets/88628553/27962f0f-1d34-49a6-81ee-82598a8897f9)
 
 #### RESTRICT→外部キー制約がかかる
 #### CASCADE→親を消したら「子」
