@@ -34,7 +34,8 @@ if (isset($_POST["submitButton"])) {
         $post_date = date("Y-m-d H:i:s");
 
         // sqlにINSERTする
-        $sql = "INSERT INTO `comment` (`username`, `body`, `post_date`) VALUES (:username, :body, :post_date);";
+        $sql = "INSERT INTO `comment` (`username`, `body`, `post_date`, `thread_id`)
+        VALUES (:username, :body, :post_date, :thread_id);";
         $statement = $pdo->prepare($sql);
 
         // 値をセット(:username, :body, :post_date)する→エスケープ処理した変数を使用する
@@ -46,6 +47,9 @@ if (isset($_POST["submitButton"])) {
         //$statement->bindParam(":body", $_POST["body"], PDO::PARAM_STR);
         //$statement->bindParam(":post_date", $post_date, PDO::PAPAM_STR);スペルミス
         $statement->bindParam(":post_date", $post_date, PDO::PARAM_STR);
+
+        //app\parts\commentFrom.phpの「value="<?php echo $thread["id"];を渡す
+        $statement->bindParam(":thread_id", $_POST["threadID"], PDO::PARAM_STR);
 
         $statement->execute();
     }
