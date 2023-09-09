@@ -68,3 +68,4 @@ del C:\xampp\mysql\data\aria_log.*
 #### CASCADE→親を消したら「子」
 
 ## トランザクション処理
+![image](https://github.com/risarisato/php_thread_function/assets/88628553/02f964a1-c472-43a4-bba1-e23a4676a637)
