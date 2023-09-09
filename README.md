@@ -1,4 +1,4 @@
-#### 49. thread_idと対応したスレッドにコメントを書き込むように修正する
+#### 52. 応用トランザクション
 
 ## PHP掲示板スレッド機能を作成する
 - http://localhost:8080/2chan-bbs/
@@ -63,12 +63,6 @@ del C:\xampp\mysql\data\aria_log.*
 - ここでは親テーブルを作成した。値が「null」のためテーブル上で直接INSERTSする
 ![image](https://github.com/risarisato/php_thread_function/assets/88628553/27962f0f-1d34-49a6-81ee-82598a8897f9)
 
-
-- app\functions\thread_add.php
-- ノートPC親スレッドの投稿したら、掲示板に戻るリダイレクト
-- header("Location: http://localhost:8080/2chan-bbs");
-- デスクトップPC親スレッドの投稿したら、掲示板に戻るリダイレクト
-- header("Location: http://localhost:8080/php_thread_function");
 
 #### RESTRICT→外部キー制約がかかる
 #### CASCADE→親を消したら「子」
