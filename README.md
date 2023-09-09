@@ -66,3 +66,5 @@ del C:\xampp\mysql\data\aria_log.*
 
 #### RESTRICT→外部キー制約がかかる
 #### CASCADE→親を消したら「子」
+
+## トランザクション処理

@@ -33,24 +33,44 @@ if (isset($_POST["submitButton"])) {
         // 時間と日付を定義する
         $post_date = date("Y-m-d H:i:s");
 
-        // sqlにINSERTする
-        $sql = "INSERT INTO `comment` (`username`, `body`, `post_date`, `thread_id`)
-        VALUES (:username, :body, :post_date, :thread_id);";
-        $statement = $pdo->prepare($sql);
+        // トランザクション処理を開始する
+        $pdo->beginTransaction();
 
-        // 値をセット(:username, :body, :post_date)する→エスケープ処理した変数を使用する
-        $statement->bindParam(":username", $escapse["username"], PDO::PARAM_STR);
-        $statement->bindParam(":body", $escapse["body"], PDO::PARAM_STR);
-        //$statement->bindParam(":username", $_POST["username"], PDO::PAPAM_STR);スペルミス
-        //$statement->bindParam(":username", $_POST["username"], PDO::PARAM_STR);
-        //$statement->bindParam(":body", $_POST["body"], PDO::PAPAM_STR);スペルミス
-        //$statement->bindParam(":body", $_POST["body"], PDO::PARAM_STR);
-        //$statement->bindParam(":post_date", $post_date, PDO::PAPAM_STR);スペルミス
-        $statement->bindParam(":post_date", $post_date, PDO::PARAM_STR);
+        try {
+            // sqlにINSERTする
+            $sql = "INSERT INTO `comment` (`username`, `body`, `post_date`, `thread_id`)
+            VALUES (:username, :body, :post_date, :thread_id);";
+            $statement = $pdo->prepare($sql);
 
-        //app\parts\commentFrom.phpの「value="<?php echo $thread["id"];を渡す
-        $statement->bindParam(":thread_id", $_POST["threadID"], PDO::PARAM_STR);
-
-        $statement->execute();
+            $statement->bindParam(":username", $escapse["username"], PDO::PARAM_STR);
+            $statement->bindParam(":body", $escapse["body"], PDO::PARAM_STR);
+            $statement->bindParam(":post_date", $post_date, PDO::PARAM_STR);
+            $statement->bindParam(":thread_id", $_POST["threadID"], PDO::PARAM_STR);
+            $statement->execute();
+            // 正常にトランザクション処理が完了したらコミットする
+            $pdo->commit();
+        } catch (PDOException $error) {
+            // エラーが発生したときはロールバックする
+            $pdo->rollBack();
+        }
+        //// sqlにINSERTする
+        //$sql = "INSERT INTO `comment` (`username`, `body`, `post_date`, `thread_id`)
+        //VALUES (:username, :body, :post_date, :thread_id);";
+        //$statement = $pdo->prepare($sql);
+        //
+        //// 値をセット(:username, :body, :post_date)する→エスケープ処理した変数を使用する
+        //$statement->bindParam(":username", $escapse["username"], PDO::PARAM_STR);
+        //$statement->bindParam(":body", $escapse["body"], PDO::PARAM_STR);
+        ////$statement->bindParam(":username", $_POST["username"], PDO::PAPAM_STR);スペルミス
+        ////$statement->bindParam(":username", $_POST["username"], PDO::PARAM_STR);
+        ////$statement->bindParam(":body", $_POST["body"], PDO::PAPAM_STR);スペルミス
+        ////$statement->bindParam(":body", $_POST["body"], PDO::PARAM_STR);
+        ////$statement->bindParam(":post_date", $post_date, PDO::PAPAM_STR);スペルミス
+        //$statement->bindParam(":post_date", $post_date, PDO::PARAM_STR);
+        //
+        ////app\parts\commentFrom.phpの「value="<?php echo $thread["id"];を渡す
+        //$statement->bindParam(":thread_id", $_POST["threadID"], PDO::PARAM_STR);
+        //
+        //$statement->execute();
     }
 }

@@ -38,30 +38,38 @@ if (isset($_POST["threadSubmitButton"])) {
         // 時間と日付を定義する
         $post_date = date("Y-m-d H:i:s");
 
-        // 親スレッド「thread」にsqlにINSERTして追加する
-        $sql = "INSERT INTO `thread` (`title`) VALUES (:title);";
-        $statement = $pdo->prepare($sql);
+        // トランザクション処理を開始する
+        $pdo->beginTransaction();
 
-        // 親スレッドのテーブルは「title」カラム
-        $statement->bindParam(":title", $escapse["title"], PDO::PARAM_STR);
+        try {
+            // sqlにINSERTする
+            $sql = "INSERT INTO `thread` (`title`) VALUES (:title);";
+            $statement = $pdo->prepare($sql);
 
-        $statement->execute();
+            // 親スレッドのテーブルは「title」カラム
+            $statement->bindParam(":title", $escapse["title"], PDO::PARAM_STR);
+            $statement->execute();
 
-        // コメント追加のSQL=タイトルが同じかどうかでスレッド判定する(サブクエリ)
-        $sql = "INSERT INTO comment (username, body, post_date, thread_id)
-        VALUES (:username, :body, :post_date,
-        (SELECT id FROM thread WHERE title = :title))";
-        $statement = $pdo->prepare($sql);
+            // コメント追加のSQL=タイトルが同じかどうかでスレッド判定する(サブクエリ)
+            $sql = "INSERT INTO comment (username, body, post_date, thread_id)
+            VALUES (:username, :body, :post_date,
+            (SELECT id FROM thread WHERE title = :title))";
+            $statement = $pdo->prepare($sql);
 
-        // 値をセットする>>先にスレッドが存在してからタイトルになる
-        $statement->bindParam(":username", $escapse["username"], PDO::PARAM_STR);
-        $statement->bindParam(":body", $escapse["body"], PDO::PARAM_STR);
-        $statement->bindParam(":post_date", $post_date, PDO::PARAM_STR);
-        $statement->bindParam(":title", $escapse["title"], PDO::PARAM_STR);
+            // 値をセットする>>先にスレッドが存在してからタイトルになる
+            $statement->bindParam(":username", $escapse["username"], PDO::PARAM_STR);
+            $statement->bindParam(":body", $escapse["body"], PDO::PARAM_STR);
+            $statement->bindParam(":post_date", $post_date, PDO::PARAM_STR);
+            $statement->bindParam(":title", $escapse["title"], PDO::PARAM_STR);
 
-        // 実行
-        $statement->execute();
+            // 実行
+            $statement->execute();
 
+            // 正常にトランザクション処理が完了したらコミットする
+            $pdo->commit();
+        } catch (PDOException $error) {
+            // エラーが発生したときはロールバックする
+            $pdo->rollBack();
     }
     // ノートPC親スレッドの投稿したら、掲示板に戻るリダイレクト
     //header("Location: http://localhost:8080/2chan-bbs");
@@ -76,4 +84,5 @@ if (isset($_POST["threadSubmitButton"])) {
     //    // デスクトップPC親スレッドの投稿したら、掲示板に戻るリダイレクト
     //    header("Location: http://localhost:8080/php_thread_function");
     //}
+    }
 }
