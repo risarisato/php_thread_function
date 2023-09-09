@@ -63,12 +63,17 @@ if (isset($_POST["threadSubmitButton"])) {
         $statement->execute();
 
     }
-    // ノートPCかデスクトップPCでPATHが変わるので、それぞれのPATHを記述する
-    if (file_exists("C:/xampp/htdocs/")) { // flie_exists関数でファイルが存在するか確認
-        // ノートPC親スレッドの投稿したら、掲示板に戻るリダイレクト
-        header("Location: http://localhost:8080/2chan-bbs");
-    } else {
-        // デスクトップPC親スレッドの投稿したら、掲示板に戻るリダイレクト
-        header("Location: http://localhost:8080/php_thread_function");
-    }
+    // ノートPC親スレッドの投稿したら、掲示板に戻るリダイレクト
+    //header("Location: http://localhost:8080/2chan-bbs");
+    // デスクトップPC親スレッドの投稿したら、掲示板に戻るリダイレクト
+    header("Location: http://localhost:8080/php_thread_function");
+
+    // PATHが変わるので、それぞれのPATHを記述する
+    //if (file_exists("C:/xampp/htdocs/")) { // flie_exists関数でファイルが存在するか確認
+    //    // ノートPC親スレッドの投稿したら、掲示板に戻るリダイレクト
+    //    header("Location: http://localhost:8080/2chan-bbs");
+    //} else {
+    //    // デスクトップPC親スレッドの投稿したら、掲示板に戻るリダイレクト
+    //    header("Location: http://localhost:8080/php_thread_function");
+    //}
 }
