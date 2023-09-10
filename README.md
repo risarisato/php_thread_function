@@ -1,9 +1,10 @@
-#### 52. 応用トランザクション
-
 ## PHP掲示板スレッド機能を作成する
 - http://localhost:8080/2chan-bbs/
 - http://localhost:8080/phpmyadmin/
 - http://localhost:8080/php_thread_function/ (ファイルパスが違うため)
+![image](https://github.com/risarisato/php_thread_function/assets/88628553/903e925c-5169-4add-9abc-34aef4838c01)
+
+
 
 ## 環境構築
 - XAMMP環境で作成
