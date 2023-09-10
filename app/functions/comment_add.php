@@ -4,6 +4,9 @@
 // $error_message が無いときに書き込める
 $error_message = array();
 
+// セッションを開始する
+session_start();
+
 
 // isset関数で「submitButton」が入っているか判定させるてワーニングを回避
 if (isset($_POST["submitButton"])) {
@@ -18,6 +21,8 @@ if (isset($_POST["submitButton"])) {
     } else {
         // エスケープ処理<script>_</script>を実行させない
         $escapse["username"] = htmlspecialchars($_POST["username"], ENT_QUOTES, "UTF-8");
+        // エスケープ処理した、セッションに名前を保存する
+        $_SESSION["username"] = $escapse["username"];
     }
 
     // コメントのバリデーションチェック

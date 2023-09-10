@@ -15,7 +15,9 @@ if (isset($_POST["submitButton"])) {
         <input type="submit" value="投稿する" name="submitButton">
         <label>名前：</label>
         <!-- この「text」は、usernameを打ち込むためのinputフォームになる -->
-        <input type="text" name="username">
+        <!-- <input type="text" name="username" value="test"> すべて名前がtestになる -->
+        <!-- if文でどこのセッションとコメントが一致するところに名前を残す -->
+        <input type="text" name="username" value="<?php if ($thread["id"] == $comment["thread_id"]) echo $_SESSION["username"] ?>">
         <!-- スーパグローバルとしてthreadIDを渡す、ユーザに見せる必要がないのでhidden -->
         <input type="hidden" name="threadID" value="<?php echo $thread["id"]; ?>">
     </div>
